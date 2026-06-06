@@ -1,8 +1,11 @@
 const express = require ('express');
 require("dotenv").config();
 const connectDB = require("./config/db");
+const leadRoutes = require("./routes/leadRoutes");
 
 const app = express();
+
+app.use(express.json());
 
 const port = process.env.PORT || 3000 ;
 
@@ -24,5 +27,7 @@ const startServer = async () => {
     }
     
 };
+
+app.use("/api/leads", leadRoutes);
 
 startServer();
