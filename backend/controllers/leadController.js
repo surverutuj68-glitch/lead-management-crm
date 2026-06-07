@@ -20,6 +20,30 @@ const createLead = async (req, res) => {
     }
 };
 
+const getLeads = async (req, res) => {
+    try{
+        const allLeads = await Lead.find();
+        if(allLeads.length === 0 ){
+            return res.status(200).json({
+            message: "Data fetched successfully!",
+            "count": allLeads.length,
+            "data": allLeads
+        });
+        }
+            return res.status(200).json({
+            message: "Data fetched successfully!",
+            count: allLeads.length,
+            data: allLeads
+        });
+        }
+        catch(error){
+        res.status(500).json({
+            message: "Unable to fetch data!",
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
-    createLead
+    createLead, getLeads
 };
