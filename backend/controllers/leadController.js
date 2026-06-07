@@ -23,17 +23,11 @@ const createLead = async (req, res) => {
 const getLeads = async (req, res) => {
     try{
         const allLeads = await Lead.find();
-        if(allLeads.length === 0 ){
-            return res.status(200).json({
-            message: "Data fetched successfully!",
-            "count": allLeads.length,
-            "data": allLeads
-        });
-        }
-            return res.status(200).json({
-            message: "Data fetched successfully!",
-            count: allLeads.length,
-            data: allLeads
+        
+        return res.status(200).json({
+        message: "Data fetched successfully!",
+        "count": allLeads.length,
+        "data": allLeads
         });
         }
         catch(error){
@@ -44,6 +38,34 @@ const getLeads = async (req, res) => {
     }
 };
 
+const updateLead = async (req, res) => {
+    try {
+        // get id
+        const leadId = req.params.id;
+
+        // get update data
+        const updatedData = req.body;
+        // update lead
+        const updatedLead = await Lead.findByIdAndUpdate(leadId, updatedData, {new: true, runValidators: true});
+        // if lead not found
+        if (!updatedLead) {
+            return res.status(404).json({ error: "Lead not found" });
+        }
+        // success response
+        res.status(200).json({
+            message: "Data updated successfully!",
+            data: updatedLead
+        });
+    } catch (error) {
+
+        res.status(500).json({
+            message: "Data update failed!",
+            error: error.message
+        });
+
+    }
+};
+
 module.exports = {
-    createLead, getLeads
+    createLead, getLeads, updateLead
 };
