@@ -49,7 +49,7 @@ const updateLead = async (req, res) => {
         const updatedLead = await Lead.findByIdAndUpdate(leadId, updatedData, {new: true, runValidators: true});
         // if lead not found
         if (!updatedLead) {
-            return res.status(404).json({ error: "Lead not found" });
+            return res.status(404).json({ message: "Lead not found" });
         }
         // success response
         res.status(200).json({
@@ -66,6 +66,29 @@ const updateLead = async (req, res) => {
     }
 };
 
+const deleteLead = async (req, res) => {
+    try{
+        const leadId = req.params.id;
+
+        const deletedLead = await Lead.findByIdAndDelete(leadId);
+        if(!deletedLead){
+            return res.status(404).json({
+                message: "Lead not found"
+            });
+        }
+        return res.status(200).json({
+            message: "Lead deleted successfully",
+            data: deletedLead
+        });
+    }
+    catch(error){
+        res.status(500).json({
+            message:"Failed to delete lead",
+            error: error.message
+        })
+    }
+}
+
 module.exports = {
-    createLead, getLeads, updateLead
+    createLead, getLeads, updateLead, deleteLead
 };
