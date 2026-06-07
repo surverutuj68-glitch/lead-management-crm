@@ -87,8 +87,47 @@ const deleteLead = async (req, res) => {
             error: error.message
         })
     }
-}
+};
+
+const searchLeads = async (req, res) => {
+    try {
+        // get search term
+        const searchTerm = req.query.term;
+        if(!searchTerm){
+            return res.status(400).json({
+                message: "Search term doesn't exist"
+            });
+        }
+        // search name OR email OR company
+        const leadSearch = await Lead.find({
+            $or: [
+                { name: { $regex: searchTerm, $options: "i" } },
+                { email: { $regex: searchTerm, $options: "i" } },
+                { company: { $regex: searchTerm, $options: "i" } }
+            ]
+        })
+        
+        if(leadSearch.length === 0){
+            return res.status(200).json({
+                message: "No leads found",
+                data:leadSearch
+            });
+        }
+        return res.status(200).json({
+            message: "Lead search successfully",
+            data: leadSearch
+        });
+
+    } catch(error) {
+
+        // error response
+        res.status(500).json({
+            message:"Failed to search lead",
+            error: error.message
+        })
+    }
+};
 
 module.exports = {
-    createLead, getLeads, updateLead, deleteLead
+    createLead, getLeads, updateLead, deleteLead, searchLeads
 };
