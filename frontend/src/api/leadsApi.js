@@ -18,8 +18,9 @@ let nextId = store.length + 1;
 const delay = (ms = 300) => new Promise((res) => setTimeout(res, ms));
 
 export const getLeads = async () => {
-  await delay();
-  return { count: store.length, data: [...store] };
+    const response = await fetch('http://localhost:5000/api/leads');
+    const result = await response.json();
+    return result;
 };
 
 export const createLead = async (data) => {
