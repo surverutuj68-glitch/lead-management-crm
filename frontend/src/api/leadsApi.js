@@ -41,11 +41,20 @@ export const createLead = async (data) => {
 };
 
 export const updateLead = async (id, data) => {
-  await delay();
-  store = store.map((l) =>
-    l._id === id ? { ...l, ...data, updatedAt: new Date().toISOString() } : l
-  );
-  return store.find((l) => l._id === id);
+    const response = await fetch(
+        `http://localhost:5000/api/leads/${id}`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    );
+
+    const result = await response.json();
+
+    return result.data;
 };
 
 export const deleteLead = async (id) => {
