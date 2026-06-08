@@ -140,7 +140,7 @@ npm run dev
 
 ### Search Lead
 
-![Search Lead](screenshots/searchLead-2.png)
+![Search Lead](screenshots/searchLead.png)
 
 ## Future Improvements
 
