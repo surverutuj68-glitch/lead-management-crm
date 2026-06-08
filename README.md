@@ -1,6 +1,11 @@
 # Lead Management CRM
 
-A modern full-stack Lead Management CRM built with React, Express.js, MongoDB Atlas, and Tailwind CSS. The application enables users to create, manage, update, delete, and search leads through a responsive dashboard interface.
+A modern full-stack Lead Management CRM built with React, Express.js, MongoDB Atlas, and Tailwind CSS. The application provides complete lead lifecycle management with CRUD operations, search functionality, and a responsive dashboard, deployed on Vercel and Render.
+
+## Live Demo
+
+* Frontend: https://lead-management-crm-woad.vercel.app/
+* Backend API: https://lead-management-crm-api-r1t7.onrender.com
 
 ## Features
 
@@ -30,6 +35,12 @@ A modern full-stack Lead Management CRM built with React, Express.js, MongoDB At
 * MongoDB Atlas
 * Mongoose
 
+## Deployment
+
+* Frontend hosted on Vercel
+* Backend hosted on Render
+* Database hosted on MongoDB Atlas
+
 ## Project Structure
 
 ```text
@@ -51,6 +62,11 @@ lead-management-crm/
 │   │   ├── hooks/
 │   │   └── App.jsx
 │   └── package.json
+│
+├── screenshots/
+│   ├── dashboard.png
+│   ├── addLead.png
+│   └── searchLead-2.png
 │
 └── README.md
 ```
@@ -140,4 +156,4 @@ npm run dev
 
 **Rutuj**
 
-Built as a full-stack CRM project using React, Express.js, and MongoDB Atlas.
+Built as a full-stack CRM project using React, Express.js, MongoDB Atlas, and Tailwind CSS.
