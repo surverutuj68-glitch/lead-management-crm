@@ -58,9 +58,15 @@ export const updateLead = async (id, data) => {
 };
 
 export const deleteLead = async (id) => {
-  await delay();
-  store = store.filter((l) => l._id !== id);
-  return { success: true };
+    await fetch(
+        `http://localhost:5000/api/leads/${id}`,
+        {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+    );
 };
 
 export const searchLeads = async (term) => {
