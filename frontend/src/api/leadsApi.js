@@ -24,15 +24,20 @@ export const getLeads = async () => {
 };
 
 export const createLead = async (data) => {
-  await delay();
-  const lead = {
-    ...data,
-    _id: String(nextId++),
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  };
-  store = [lead, ...store];
-  return lead;
+    const response = await fetch(
+        "http://localhost:5000/api/leads",
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    );
+
+    const result = await response.json();
+
+    return result.data;
 };
 
 export const updateLead = async (id, data) => {
