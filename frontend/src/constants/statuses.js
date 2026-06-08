@@ -1,0 +1,1 @@
+export const STATUSES = ["New", "Contacted", "Qualified", "Converted", "Lost"];

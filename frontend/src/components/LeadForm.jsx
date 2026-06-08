@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { STATUSES } from "../data/mockLeads";
+import { STATUSES } from "../constants/statuses";
 
 const EMPTY = { name: "", email: "", phone: "", company: "", status: "New", notes: "" };
 

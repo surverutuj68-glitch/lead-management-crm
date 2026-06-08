@@ -1,12 +1,14 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const getLeads = async () => {
-    const response = await fetch('http://localhost:5000/api/leads');
+    const response = await fetch(`${API_URL}/api/leads`);
     const result = await response.json();
     return result;
 };
 
 export const createLead = async (data) => {
     const response = await fetch(
-        "http://localhost:5000/api/leads",
+        `${API_URL}/api/leads`,
         {
             method: 'POST',
             headers: {
@@ -23,7 +25,7 @@ export const createLead = async (data) => {
 
 export const updateLead = async (id, data) => {
     const response = await fetch(
-        `http://localhost:5000/api/leads/${id}`,
+        `${API_URL}/api/leads/${id}`,
         {
             method: 'PUT',
             headers: {
@@ -40,7 +42,7 @@ export const updateLead = async (id, data) => {
 
 export const deleteLead = async (id) => {
     await fetch(
-        `http://localhost:5000/api/leads/${id}`,
+        `${API_URL}/api/leads/${id}`,
         {
             method: "DELETE",
             headers: {
@@ -52,7 +54,7 @@ export const deleteLead = async (id) => {
 
 export const searchLeads = async (term) => {
     const response = await fetch(
-        `http://localhost:5000/api/leads/search?term=${encodeURIComponent(term)}`,
+        `${API_URL}/api/leads/search?term=${encodeURIComponent(term)}`,
         {
             method: 'GET',
             headers: {
